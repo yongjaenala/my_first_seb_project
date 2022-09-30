@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+<!-- 제목 블록 Start (기본값 My Blog Page) -->
+{% block title %}
+403 Error
+{% endblock %}
+<!-- 제목 블록 End -->
+
+<!-- 스타일 블록 Start -->
+{% block extra-style %}
+{% endblock %}
+<!-- 스타일 블록 End -->
+
+<!-- 콘텐츠 블록 Start -->
+{% block content %}
+    <h1>Permission Denied (403)</h1>
+    <br>
+    
+    <div class="alert alert-danger">
+        <div class="font-weight-bold">{{ exception }}</div>
+    </div>
+{% endblock %}
+<!-- 콘텐츠 블록 End -->
+
+<!-- 스크립트 블록 Start -->
+{% block extra-script %}
+
+{% endblock %}
+<!-- 스크립트 블록 End -->

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Blog BookMark List Page
+{% endblock %}
+
+{% block extra-style %}
+{% endblock %}
+
+{% block content %}
+<h1>북마크 리스트</h1>
+<ul>
+    {% for bm in object_list %}
+    <li>
+        <a class='h3' href="{% url 'bookmark:detail' bm.id %}">{{ bm }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'bookmark:change' %}" class="btn btn-outline-primary btn-sm" style = "float:right;">수정</a>
+<a href="{% url 'bookmark:add' %}" class="btn btn-outline-primary btn-sm" style = "float:right;">추가</a>
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

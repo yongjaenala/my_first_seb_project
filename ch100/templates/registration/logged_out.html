@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+<!-- 제목 블록 Start (기본값 My Blog Page) -->
+{% block title %}
+My Blog Logged out Page
+{% endblock %}
+<!-- 제목 블록 End -->
+
+<!-- 스타일 블록 Start -->
+{% block extra-style %}
+{% endblock %}
+<!-- 스타일 블록 End -->
+
+<!-- 콘텐츠 블록 Start -->
+{% block content %}
+    <h1>Logged Out</h1>
+    <br>
+
+    <div>
+        <i class="fas fa-quote-left"></i>
+        <span class="h6">
+            &ensp;
+            안녕히가세요
+            &ensp;
+        </span>
+        <i class="fas fa-quote-right"></i>
+    </div>
+
+    <p class="font-italic"><a href="{url 'login' %}">다시 로그인하기</a></p>
+{% endblock %}
+<!-- 콘텐츠 블록 End -->
+
+<!-- 스크립트 블록 Start -->
+{% block extra-script %}
+
+{% endblock %}
+<!-- 스크립트 블록 End -->

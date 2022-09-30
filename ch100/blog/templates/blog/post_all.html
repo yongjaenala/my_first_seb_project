@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+공지사항
+{% endblock %}
+
+{% block extra-style %}
+{% endblock %}
+
+{% block content %}
+<h1>공지사항</h1>
+
+<a href="{% url 'blog:change' %}" class="btn btn-outline-primary btn-sm" style = "float:right;">수정</a> 
+<a href="{% url 'blog:add' %}" class="btn btn-outline-primary btn-sm" style = "float:right;">추가</a>
+<br>
+{% for post in posts %}
+
+    <h6><a href='{{ post.get_absolute_url }}'>{{ post }}</a></h6>
+    {{ post.modify_dt|date:"N d, Y" }}
+    <p>{{ post.description }}</p>
+    <br>    
+{% endfor%}
+
+<hr>
+
+<div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+        {% else %}
+            FirstPage
+        {% endif%}
+
+        /Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}/
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+        {% else %}
+            LastPage
+        {% endif%}
+    </span>
+
+    <br>
+
+    <div>
+        <a href="/blog/archive">아카이브로 보기</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

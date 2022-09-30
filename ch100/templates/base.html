@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 제목 블록 Start (기본값 My Blog Page) -->
+    <title>    
+        {% block title %}
+            My Blog Page
+        {% endblock %}
+    </title>
+    <!-- 제목 블록 End -->
+
+    <!-- Bootstrap CSS only -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- font change [pretendard] -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" />
+    
+    <!-- 공통 스타일 적용 Start -->
+    <style>
+        * {
+            font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #main-wrapper{
+            margin: 60px 0;
+            height: auto;
+            min-height: 100%;
+            padding-bottom: 266px;
+        }
+        footer {
+            height: 266px;
+            position: relative;
+            transform : translateY(-100%);
+            width: 100%;
+            padding: 60px 0;
+            background: #252629;
+        }
+        #contact_info  * {
+            color: #96989c;
+            font-size: 14px;
+        }
+    
+        footer .footer_logo {
+            padding-bottom: 24px;
+            color: #fff;
+            font-weight: 600;
+        }
+    </style>
+    <!-- 공통 스타일 적용 End -->
+
+    <!-- 스타일 블록 Start -->
+    {% block extra-style %}
+    {% endblock %}
+    <!-- 스타일 블록 End -->
+</head>
+
+<body>
+    <!-- 네비게이션 바 Start -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <li class="nav-item mx-0 btn">
+            <a class="nav-link text-white mx-0 mb-0 font-weight-bold font-italic h3" href="{% url 'home' %}">권용재님</a>
+        </li>
+        <!-- <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">BLOG</span> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-1 btn">
+                    <a class="nav-link text-white" href="{% url 'bookmark:index' %}">BookMark</a>
+                </li>
+                <li class="nav-item mx-1 btn">
+                    <a class="nav-link text-white" href="{% url 'blog:index' %}">공지사항</a>
+                </li>
+                <li class="nav-item mx-1 btn">
+                    <a class="nav-link text-white" href="{% url 'boards:index' %}">자유게시판</a>
+                </li>
+                <li class="nav-item mx-1 btn">
+                    <a class="nav-link text-white" href="{% url 'photo:index' %}">Photo</a>
+                </li>
+                <li class="nav-item dropdown mx-1 btn">
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">Edit Photo</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'photo:album_add' %}">add-Album</a>
+                        <a class="dropdown-item" href="{% url 'photo:photo_add' %}">add-Photo</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'photo:album_change' %}">change-Album</a>
+                        <a class="dropdown-item" href="{% url 'photo:photo_change' %}">change-Photo</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown mx-1 btn">
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">Dropdown</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
+                        <a class="dropdown-item" href="{% url 'blog:search' %}">Search</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <!-- <form class="form-inline my-2">
+                <input class="form-control mr-sm-2" type="search" placeholder="global search" name="search_word">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+           
+            
+            <!--  -->
+            <ul class="navbar-nav mx-5">
+                <li class="nav-item dropdown mx-1 btn btn-dark">
+                    {% if user.is_active %} <!-- 로그인된 상태라면 -->
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+                        <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+                    </div>
+                    {% else %} <!-- 로그인된 상태가 아니라면 -->
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+                        로그인 / 회원가입
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                    </div>
+                    {% endif %}
+                </li>
+            </ul>
+            <!--  -->
+        </div>
+    </nav>
+    <!-- 네비게이션 바 End -->
+
+    <div id="main-wrapper">
+        <div id="main-content" class="container">
+            <!-- 콘텐츠 블록 Start -->
+            {% block content %}
+            {% endblock %}
+            <!-- 콘텐츠 블록 End -->
+        </div>
+    </div>
+
+    <!-- 푸터 Start -->
+    <footer>
+        <div class="container">
+            <div class="footer_logo">My Blog</div>
+            <div id="contact_info">
+                <p>
+                    <a class="text-decoration-none" href="tel:+821012345678"><i class="fa-solid fa-phone"></i>&emsp;010-1234-5678</a>
+                    <br>
+                    <a class="text-decoration-none" href="mailto:data.kwonyj@gmail.com"><i class="fa-solid fa-envelope"></i>&emsp;data.kwonyj@gmail.com</a>
+                    <br>
+                    <a class="text-decoration-none" href="https://www.instagram.com/dlwlrma" target="_blank"><i class="fa-brands fa-square-instagram"></i>&emsp;띠용</a>
+                </p>
+            </div>
+            <p style="color:#646873">Copyright © <b>Kwon Yong Jae</b> All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- 푸터 End -->
+</body>
+
+<script src="https://kit.fontawesome.com/ec5623cc8e.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- 스크립트 블록 Start -->
+{% block extra-script %}
+
+{% endblock %}
+<!-- 스크립트 블록 End -->
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Blog BookMark Detail Page
+{% endblock %}
+
+{% block extra-style %}
+{% endblock %}
+
+{% block content %}
+<h1>북마크 디테일</h1>
+<ul>
+    <li>
+        <a href="{{ object.url }}" target="_blank">{{ object.url }}</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

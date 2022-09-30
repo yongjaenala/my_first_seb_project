@@ -1,0 +1,27 @@
+.home-image {
+    /* https://picsum.photos/500/300 */
+    background-image: url('../img/home_img.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 500px;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid #fff;
+    padding: 20px 0 0 20px;
+}
+
+.powered {
+    position: relative;
+    top: 90%;
+    color: #cc0;
+    margin-right: 3%;
+    text-align: right;
+    font-style: italic;
+}
+
+.shorttitle {
+    width: 60%;               /* 가로 길이 고정   px 아니면 % */
+    text-overflow: ellipsis;     /* 생략 처리 ( ... )*/
+    white-space: nowrap;         /* 줄바꿈 하지 않고 잘림*/
+    overflow: hidden;            /* 스크롤 처리 하지 않음*/
+}

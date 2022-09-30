@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-style %}
+<link href="{% static 'css/home.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="home-image">
+    <h4 class="powered"><i class="fas fa-arrow-circle-right"></i> powered by Django and Bootstrap</h4>
+</div>
+
+<hr style="margin: 10px 0">
+
+
+<div class="dummywrap title" style="text-align:center;">
+    <h3 class="commu-title">
+        <a class="tit-btn" style="cursor:context-menu;color:#000000;font-weight:bold;">
+            &nbsp;&nbsp;&nbsp; 최신 글
+        </a>
+    </h3>
+</div>
+
+<div class="row text-center mt-5">
+    <div class="col-sm-6">
+        <article class="list-common_left">
+            <style>
+                #imid_83c7333fe51268f.tab-menu li{height:32;line-height:33px}
+                #imid_83c7333fe51268f.tab-menu li:nth-of-type(1) a p{background-color:#f3f3f3;color:#000000;font-weight:normal}
+                #imid_83c7333fe51268f.tab-menu li:nth-of-type(1) a p.on{background-color:#3d85c6;color:#ffffff;font-weight:bold}
+                #imid_83c7333fe51268f.tab-menu li:nth-of-type(1) a p.hover{background-color:#3d85c6;color:#ffffff;font-weight:bold}
+                #imid_83c7333fe51268f.tab-menu li:nth-of-type(2) a p{background-color:#f3f3f3;color:#000000;font-weight:normal}
+                #imid_83c7333fe51268f.tab-menu li:nth-of-type(2) a p.on{background-color:#3d85c6;color:#ffffff;font-weight:normal}
+                #imid_83c7333fe51268f.tab-menu li:nth-of-type(2) a p.hover{background-color:#3d85c6;color:#ffffff;font-weight:normal}
+                #imid_83c7333fe51268f ~ *{display:none}
+                #imid_83c7333fe51268f + div{display:block}
+            </style>
+            <script>        
+                $(document).ready(function () { 
+                    var tabbar = $('#imid_83c7333fe51268f.tab-menu');
+                    var checked = 0;
+
+                    $(document).on('mouseover', '#imid_83c7333fe51268f.tab-menu a', function(e) {
+                        var me = $(this)
+                        ,   ul = me.parent().parent()
+                        ,   p = me.find('p')
+                        ,   part = me.data('part')
+                        ,   tablist = tabbar.siblings().filter('.tablist');
+                        if (!p.hasClass('on')) {
+                            ul.find('p').removeClass('on');
+                            p.addClass('on');
+                            tablist.hide();
+                            tablist.filter('.tab'+part).show();
+
+                        }
+                        
+                        e.preventDefault();
+                    }); 
+
+                    tabbar.siblings().each(function(i, v){
+                        var self  = $(this);
+                        var except = ['STYLE', 'SCRIPT'];
+                        if(!self.hasClass('title') && ($.inArray(self[0].nodeName, except) == -1) && !self.hasClass('hidden')) {
+                            if (checked > 0) {
+                                self.addClass('tablist');
+                                self.addClass('tab'+checked);
+                            }else {
+                                self.addClass('tablist').addClass('tab0');
+                            }
+                            checked++;
+                        }
+                    });
+
+
+
+                });
+            </script>
+            <h3 class="hidden"></h3>
+            <ul id="imid_83c7333fe51268f" class="tab-menu" data-length="2">
+                <li><a href="http://127.0.0.1:8000/blog/" target="_self" data-part="0"><p class="on">공지사항</p></a></li>
+            </ul>
+            <div id="imid_ca38aee709a882d" class="list-bbs  tablist tab0">
+                <style>
+                    #imid_ca38aee709a882d{background-color:#ffffff}#imid_ca38aee709a882d div.tit{font-family:inherit;color:#000000}	
+                </style>
+                <!-- ==================== Module [list-bbs] Begin ==================== -->
+                <h3 class="hidden"></h3>
+                <ul class="basic board0 list-bbs">
+                    {% for post in post_list %}
+                    <li class="b2299">
+                        <a href="{{ post.get_absolute_url }}">
+                            <div class="txt-wrap">
+                                <div class="cate" style="color:#3d85c6;float:left;margin-left:10px;">공지사항</div>
+                                <div class="shorttitle" style="color:#222222;float:left;margin-left:10px;">{{ post }}</div>
+                            </div>
+                        </a>
+                        <hr>
+                    </li> 
+                    {% endfor %}                                  
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <div class="col-sm-6">
+        <article class="list-common_right">
+            <style>
+                #imid_83c7333fe51268e.tab-menu li{height:32;line-height:33px}
+                #imid_83c7333fe51268e.tab-menu li:nth-of-type(1) a p{background-color:#f3f3f3;color:#000000;font-weight:normal}
+                #imid_83c7333fe51268e.tab-menu li:nth-of-type(1) a p.on{background-color:#3d85c6;color:#ffffff;font-weight:bold}
+                #imid_83c7333fe51268e.tab-menu li:nth-of-type(1) a p.hover{background-color:#3d85c6;color:#ffffff;font-weight:bold}
+                #imid_83c7333fe51268e.tab-menu li:nth-of-type(2) a p{background-color:#f3f3f3;color:#000000;font-weight:normal}
+                #imid_83c7333fe51268e.tab-menu li:nth-of-type(2) a p.on{background-color:#3d85c6;color:#ffffff;font-weight:normal}
+                #imid_83c7333fe51268e.tab-menu li:nth-of-type(2) a p.hover{background-color:#3d85c6;color:#ffffff;font-weight:normal}
+                #imid_83c7333fe51268e ~ *{display:none}
+                #imid_83c7333fe51268e + div{display:block}
+            </style>
+            <script>        
+                $(document).ready(function () { 
+                    var tabbar = $('#imid_83c7333fe51268f.tab-menu');
+                    var checked = 0;
+
+                    $(document).on('mouseover', '#imid_83c7333fe51268f.tab-menu a', function(e) {
+                        var me = $(this)
+                        ,   ul = me.parent().parent()
+                        ,   p = me.find('p')
+                        ,   part = me.data('part')
+                        ,   tablist = tabbar.siblings().filter('.tablist');
+                        if (!p.hasClass('on')) {
+                            ul.find('p').removeClass('on');
+                            p.addClass('on');
+                            tablist.hide();
+                            tablist.filter('.tab'+part).show();
+
+                        }
+                        
+                        e.preventDefault();
+                    }); 
+
+                    tabbar.siblings().each(function(i, v){
+                        var self  = $(this);
+                        var except = ['STYLE', 'SCRIPT'];
+                        if(!self.hasClass('title') && ($.inArray(self[0].nodeName, except) == -1) && !self.hasClass('hidden')) {
+                            if (checked > 0) {
+                                self.addClass('tablist');
+                                self.addClass('tab'+checked);
+                            }else {
+                                self.addClass('tablist').addClass('tab0');
+                            }
+                            checked++;
+                        }
+                    });
+
+
+
+                });
+            </script>
+            <h3 class="hidden"></h3>
+            <ul id="imid_83c7333fe51268e" class="tab-menu" data-length="2">
+                <li><a href="http://127.0.0.1:8000/boards/" target="_self" data-part="1"><p class="on">자유게시판</p></a></li>
+            </ul>
+            <div id="imid_ca38aee709a882g" class="list-bbs  tablist tab0">
+                <style>
+                    #imid_ca38aee709a882g{background-color:#ffffff}
+                    #imid_ca38aee709a882g div.tit{font-family:inherit;color:#000000}	
+                </style>
+                <!-- ==================== Module [list-bbs] Begin ==================== -->
+                <h3 class="hidden"></h3>
+                <ul class="basic board0 list-bbs">
+                    {% for board in board_list %}
+                    <li class="b2299">
+                        <a href="{{ board.get_absolute_url }}">        
+                            <div class="text-wrap">
+                                <div class="cate" style="color:#3d85c6;float:left;margin-left:10px;">게시판</div>
+                                <div class="shorttitle" style="color:#222222;float:left;margin-left:10px;">{{ board }}</div>
+                            </div>
+                        </a>
+                        <hr>
+                    </li>                        
+                    {% endfor %}           
+                </ul>
+            </div>
+        </article>
+    </div>
+</div>
+
+
+
+
+<div class="row text-center mt-5">
+    <div class="col-sm-6">
+        <a class="nav-link text-danger h3" href="{% url 'bookmark:index' %}">BookMark App</a>
+        <!-- <h3>BookMark App</h3> -->
+        <p>자주 가는 사이트 링크</p>
+    </div>
+    <div class="col-sm-6">
+        <a class="nav-link text-warning h3" href="{% url 'blog:index' %}">공지사항</a>
+        <!-- <h3>Blog App</h3> -->
+        <p>공지하는곳</p>
+    </div>
+    <div class="col-sm-6">
+        <a class="nav-link text-primary h3" href="{% url 'boards:index' %}">자유게시판</a>
+        <!-- <h3>Blog App</h3> -->
+        <p>자유로운 게시판</p>
+    </div>
+    <div class="col-sm-6">
+        <a class="nav-link text-success h3" href="{% url 'photo:index' %}">Photo App</a>
+        <p>짤 모음집</p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

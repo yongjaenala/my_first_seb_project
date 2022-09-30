@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+{% endblock %}
+
+
+{% block extra-style %}
+{% endblock %}
+
+
+{% block content %}
+    <h1>앨범리스트</h1>
+
+    <h4>리스트 : {{ object_list }}</h4>
+
+    {% for object in object_list %}
+        앨범명 : {{ object }}<br>
+        앨범설명 : {{ object.description }}<br>
+        <h6>앨범 사진들</h6>
+            <div class="ml-3">
+            {% for photo in object.photo_set.all %}
+                제목 : {{ photo }} <br>
+                <!-- 사진설명 : {{ photo.description }}<br>    
+                업로드일 : {{ photo.upload_dt }}<br>
+                이미지 : {{ photo.image }}<br>
+                이미지경로 : {{ photo.image.url }}<br>
+                썸네일 경로 : {{photo.image.thumb_url }}<br>
+                상세보기 경로 : {{ photo.get_absolute_url }}<br> -->
+                <img src="{{ photo.image.thumb_url }}" alt="{{ photo }}">
+                <hr>
+            {% endfor %}
+            </div>
+        <hr>
+    {% endfor %}
+    
+{% endblock %}
